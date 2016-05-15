@@ -1,1 +1,1 @@
-server=localhost;initial catalog=TAQBenchmarks;integrated security=SSPI;
+server=localhost;initial catalog=TAQBenchmarks;integrated security=SSPI;application name=SQLDriver
