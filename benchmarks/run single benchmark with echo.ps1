@@ -3,5 +3,6 @@ $repeats = 16000
 $threads = 1
 
 $command = "exec dbo.EnqueueMessage @id=1;"
+$command = "exec dbo.DequeueMessage;"
 
 .\SQLDriver.exe -c ""$connectionString"" -r $repeats -t $threads -s ""$command""

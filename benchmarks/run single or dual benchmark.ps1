@@ -3,7 +3,7 @@ $repeats = 4000
 $threads = 4
 
 $should_run_enqueue = $true
-$should_run_dequeue = $false
+$should_run_dequeue = $true
 
 if($should_run_enqueue)
 {
