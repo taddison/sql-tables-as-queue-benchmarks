@@ -28,7 +28,7 @@ Still todo.  Current thoughts are that there will be multiple solution types (e.
 Ideally you'll be sending in a pull request with details on how your solution outperforms the current front-runner.  Some process of formally validating those claims on other hardware is needed, as well as sharing any analysis.
 
 ## What is SQLDriver
-If you don't want to run a random executable you downloaded from the internet (why wouldn't you?), then you can build it from source (When I post it).
+If you don't want to run a random executable you downloaded from the internet (why wouldn't you?), then you can build it from source: https://github.com/taddison/SQLDriver
 
 ## How to contribute
 Send a PR with a new implementation/open an issue/run some benchmarks on your hardware and share the results!
