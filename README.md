@@ -19,6 +19,7 @@ All solutions implemented must implement the following (and if they don't they s
 - FIFO delivery for messages of equal priority
 - Does not require a manual cleanup process (e.g. a heap with deletes will grow forever, dangling conversations endpoints will never go away)
 - Dequeue procedure returns an XML payload, and message type name
+- If there are no messages to dequeue the procedure should return an empty result set (0 rows) immediately
 - Enqueue procedure accepts an integer, which is encoded in an XML payload
 
 ## Benchmarking methodology
