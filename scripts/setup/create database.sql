@@ -16,3 +16,6 @@ alter database TAQBenchmarks set delayed_durability = allowed;
 go
 alter authorization on database::TAQBenchmarks to sa
 go
+use TAQBenchmarks
+go
+create master key encryption by password = 'P4ssw[]rd';
