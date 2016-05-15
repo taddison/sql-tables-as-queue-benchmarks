@@ -1,6 +1,6 @@
 /* 
 	Create and analyses an extended event (XE) session which captures wait stats for the SQLDriver program only
-	Heavily inspired by the work of Paul Randall: http://www.sqlskills.com/blogs/paul/capturing-wait-stats-for-a-single-operation/
+	Inspired by the work of Paul Randall: http://www.sqlskills.com/blogs/paul/capturing-wait-stats-for-a-single-operation/
 	Don't use the XE session when benchmarking, only for figuring out what to tune next
 
 	- You may need to modify your file paths
@@ -26,8 +26,9 @@ add target package0.asynchronous_file_target ( set filename = N'B:\SQL\SQLDriver
 with (max_dispatch_latency = 1 seconds);
 go
 
---alter event session SQLDriverWaits on server state = start
---alter event session SQLDriverWaits on server state = stop
+alter event session SQLDriverWaits on server state = start
+/* Run workload */
+alter event session SQLDriverWaits on server state = stop
 
 if object_id('tempdb.dbo.#xetemp') is not null
 	drop table #xetemp

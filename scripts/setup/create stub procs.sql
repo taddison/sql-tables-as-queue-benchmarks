@@ -21,5 +21,5 @@ as
 begin
 	set nocount on;
 
-	select cast('<id>1</id>' as xml) as Payload;
+	select cast('<id>1</id>' as xml) as Payload, 'TestType' as MessageType;
 end;

@@ -64,7 +64,7 @@ begin
 		(@message);
 
 		end conversation @ch;
-	commit transaction
+	commit transaction with (delayed_durability = on);
 end;
 go
 create procedure dbo.DequeueMessage
@@ -87,10 +87,10 @@ begin
 	end;
 	else if(@payload is not null)
 	begin
-		select @payload as Payload;
+		select @payload as Payload, @message_type_name as MessageType;
 	end
 	else
 	begin
-		select top 0 @payload as Payload
+		select top 0 @payload as Payload, @message_type_name as MessageType
 	end;
 end;
