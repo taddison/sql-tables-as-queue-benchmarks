@@ -38,3 +38,59 @@ set (contract_name = XMLContract_LowPriority
 	,remote_service_name = any
 );
 go
+if object_id('dbo.EnqueueMessage') is not null
+	drop procedure dbo.EnqueueMessage
+go
+if object_id('dbo.DequeueMessage') is not null
+	drop procedure dbo.DequeueMessage
+go
+create procedure dbo.EnqueueMessage
+	@id int
+	,@message_priority tinyint = 0
+as
+begin
+	set nocount on;
+
+	declare @ch uniqueidentifier;
+
+	begin dialog conversation @ch
+	from service XML_Initiator_Service
+	to service 'XML_Receiver_Service'
+	on contract XMLContract_HighPriority;
+
+	declare @message xml = '<id>' + cast(@id as varchar(10)) + '</id>';
+
+	send on conversation @ch
+	message type XMLMessage
+	(@message);
+
+	end conversation @ch;
+end;
+go
+create procedure dbo.DequeueMessage
+as
+begin
+	set nocount on;
+
+	declare @ch uniqueidentifier
+			,@payload xml
+			,@message_type_name nvarchar(256);
+	
+	;receive top(1) @payload = cast(message_body as xml)
+					,@message_type_name = message_type_name
+					,@ch = conversation_handle
+	from XML_Receiver_Queue;
+
+	if(@message_type_name = 'http://schemas.microsoft.com/SQL/ServiceBroker/EndDialog')
+	begin
+		end conversation @ch;
+	end;
+	else if(@payload is not null)
+	begin
+		select @payload as Payload;
+	end
+	else
+	begin
+		select top 0 @payload as Payload
+	end;
+end;
