@@ -19,6 +19,7 @@ All solutions implemented must implement the following (and if they don't they s
 - FIFO delivery for messages of equal priority
 - Does not require a manual cleanup process (e.g. a heap with deletes will grow forever, dangling conversations endpoints will never go away)
 - Dequeue procedure returns an XML payload, and message type name
+- If there are no messages to dequeue the procedure should return an empty result set (0 rows) immediately
 - Enqueue procedure accepts an integer, which is encoded in an XML payload
 
 ## Benchmarking methodology
@@ -27,7 +28,7 @@ Still todo.  Current thoughts are that there will be multiple solution types (e.
 Ideally you'll be sending in a pull request with details on how your solution outperforms the current front-runner.  Some process of formally validating those claims on other hardware is needed, as well as sharing any analysis.
 
 ## What is SQLDriver
-If you don't want to run a random executable you downloaded from the internet (why wouldn't you?), then you can build it from source (When I post it).
+If you don't want to run a random executable you downloaded from the internet (why wouldn't you?), then you can build it from source: https://github.com/taddison/SQLDriver
 
 ## How to contribute
 Send a PR with a new implementation/open an issue/run some benchmarks on your hardware and share the results!
