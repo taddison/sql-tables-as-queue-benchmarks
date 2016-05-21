@@ -19,3 +19,8 @@ go
 use TAQBenchmarks
 go
 create master key encryption by password = 'P4ssw[]rd';
+
+/* In-memory only */
+alter database TAQBenchmarks add FILEGROUP InMemory contains memory_optimized_data;
+alter database TAQBenchmarks add file (name='inmemory_main', filename='b:\SQL\TAQ_inmemory') to filegroup InMemory;
+alter database TAQBenchmarks set memory_optimized_elevate_to_snapshot = on;
