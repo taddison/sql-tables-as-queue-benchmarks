@@ -1,0 +1,43 @@
+Standard DS4 v2
+InMemory - 1
+Commit e6fc7dcf102846e4cdc5638fa21efcf0ff0fe555
+
+1 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 1 threads and 20000 repetitions per thread...Done
+
+Completed 20000 executions in 6712ms
+Min: 0 | Avg: 0 | Max: 246
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      0|      0|      0|      0|      0|      3
+
+2 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 2 threads and 20000 repetitions per thread...Done
+
+Completed 40000 executions in 6352ms
+Min: 0 | Avg: 0 | Max: 11
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      0|      0|      0|      0|      0|      4
+
+4 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 4 threads and 20000 repetitions per thread...Done
+
+Completed 80000 executions in 9032ms
+Min: 0 | Avg: 0 | Max: 944
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      0|      0|      0|      0|      0|      3
+
+8 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 8 threads and 20000 repetitions per thread...Done
+
+Completed 160000 executions in 9216ms
+Min: 0 | Avg: 0 | Max: 934
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      0|      0|      0|      0|      0|      1

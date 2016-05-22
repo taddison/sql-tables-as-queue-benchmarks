@@ -1,0 +1,46 @@
+Standard DS4 v2
+Clustered Table - 1
+Commit dac9cac228525ce4e844aaa594d0d8840b8bc65c
+
+1 Threads executing  exec dbo.EnqueueMessage @id=1;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 1 threads and 20000 repetitions per thread...Done
+
+Completed 20000 executions in 8817ms
+Min: 0 | Avg: 0 | Max: 5
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      0|      0|      0|      0|      0|      1
+
+2 Threads executing  exec dbo.EnqueueMessage @id=1;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 2 threads and 20000 repetitions per thread...Done
+
+Completed 40000 executions in 7895ms
+Min: 0 | Avg: 0 | Max: 19
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      0|      0|      0|      0|      0|      2
+
+4 Threads executing  exec dbo.EnqueueMessage @id=1;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 4 threads and 20000 repetitions per thread...Done
+
+Completed 80000 executions in 8336ms
+Min: 0 | Avg: 0 | Max: 963
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      0|      0|      0|      0|      0|      1
+
+8 Threads executing  exec dbo.EnqueueMessage @id=1;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 8 threads and 20000 repetitions per thread...Done
+
+Completed 160000 executions in 8405ms
+Min: 0 | Avg: 0 | Max: 963
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      0|      0|      0|      0|      0|      1
+
+
+PS C:\src\sql-tables-as-queue-benchmarks\benchmarks> 

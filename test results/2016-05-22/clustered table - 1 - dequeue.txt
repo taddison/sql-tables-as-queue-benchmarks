@@ -1,0 +1,44 @@
+Standard DS4 v2
+Clustered Table - 1
+Commit dac9cac228525ce4e844aaa594d0d8840b8bc65c
+
+1 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+
+Running load test with 1 threads and 20000 repetitions per thread...Done
+
+Completed 20000 executions in 25095ms
+Min: 0 | Avg: 1 | Max: 13
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      1|      1|      1|      2|      2|      3
+
+2 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 2 threads and 20000 repetitions per thread...Done
+
+Completed 40000 executions in 36882ms
+Min: 0 | Avg: 1 | Max: 995
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      1|      2|      2|      2|      3|     15
+
+4 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 4 threads and 20000 repetitions per thread...Done
+
+Completed 80000 executions in 57629ms
+Min: 0 | Avg: 2 | Max: 31
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      2|      4|      4|      4|      5|      8
+
+8 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 8 threads and 20000 repetitions per thread...Done
+
+Completed 160000 executions in 86865ms
+Min: 0 | Avg: 4 | Max: 38
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      4|      6|      6|      7|      9|     14

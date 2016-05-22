@@ -1,0 +1,43 @@
+Standard DS4 v2
+Service Broker - 4
+Commit e6fc7dcf102846e4cdc5638fa21efcf0ff0fe555
+
+1 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 1 threads and 20000 repetitions per thread...Done
+
+Completed 20000 executions in 50413ms
+Min: 0 | Avg: 2 | Max: 271
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      2|      2|      2|      3|      3|    241
+
+2 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 2 threads and 20000 repetitions per thread...Done
+
+Completed 40000 executions in 65690ms
+Min: 0 | Avg: 3 | Max: 252
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      2|      3|      3|      3|      4|    226
+
+4 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 4 threads and 20000 repetitions per thread...Done
+
+Completed 80000 executions in 80328ms
+Min: 0 | Avg: 4 | Max: 279
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      3|      4|      4|      5|      6|    225
+
+8 Threads executing  exec dbo.DequeueMessage;   20000  times
+Initialising test runner and opening connections...Done
+Running load test with 8 threads and 20000 repetitions per thread...Done
+
+Completed 160000 executions in 118736ms
+Min: 0 | Avg: 5 | Max: 423
+
+  50P  |  80P  |  90P  |  95P  |  99P  | 99.9P
+      4|      6|      7|      9|     14|    228
