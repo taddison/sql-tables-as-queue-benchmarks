@@ -4,7 +4,7 @@
 create database TAQBenchmarks on primary 
 ( name = N'TAQBenchmarks', filename = N'D:\SQL\TAQBenchmarks.mdf' , size = 1048576kb , filegrowth = 256000kb )
     log on 
-( name = N'TAQBenchmarks_log', filename = N'D:\SQL\TAQBenchmarks_log.ldf' , size = 524288kb , filegrowth = 256000kb );
+( name = N'TAQBenchmarks_log', filename = N'D:\SQL\TAQBenchmarks_log.ldf' , size = 1048576kb , filegrowth = 256000kb );
 go
 alter database TAQBenchmarks set compatibility_level = 130;
 go
