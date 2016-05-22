@@ -1,6 +1,6 @@
-﻿# Enqueue tests - 1, 2, 4, 8 threads
+﻿# Dequeue tests - 1, 2, 4, 8 threads
 $connectionString = Get-Content .\connectionstring.txt
-$command = "exec dbo.EnqueueMessage @id=1;"
+$command = "exec dbo.DequeueMessage;"
 $repeats = 20000
 
 $threads = 1
