@@ -6,7 +6,7 @@ create table dbo.ClusteredQueue
 	Id int identity(1,1) not null
 	,Priority tinyint not null
 	,MessageTypeId int not null
-	,Payload xml not null	
+	,Payload varchar(1000) not null	
 );
 go
 create unique clustered index CUIX_ClusteredQueue on dbo.ClusteredQueue ( Priority desc, Id asc ) with (data_compression = page)
@@ -19,7 +19,7 @@ as
 begin
 	set nocount on;
 
-	declare @payload xml = '<id>' + cast(@id as varchar(10)) + '</id>';
+	declare @payload varchar(1000) = '<id>' + cast(@id as varchar(10)) + '</id>';
 
 	insert into dbo.ClusteredQueue
 	(
