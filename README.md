@@ -16,11 +16,16 @@ A script is included which will capture all waits driven by the SQLDriver applic
 ## Solution requirements
 All solutions implemented must implement the following (and if they don't they should call that out):
 - Message priority (higher priority messages are dequeued before lower priority messages)
-- FIFO delivery for messages of equal priority
+- 'Loose' FIFO delivery for messages of equal priority (see note 1 below)
+- The same message can not be read by two consumers (see note 2 below)
 - Does not require a manual cleanup process (e.g. a heap with deletes will grow forever, dangling conversations endpoints will never go away)
-- Dequeue procedure returns an XML payload, and message type name
+- Dequeue procedure returns a varchar payload, and message type Id (see note 3 below)
 - If there are no messages to dequeue the procedure should return an empty result set (0 rows) immediately
-- Enqueue procedure accepts an integer, which is encoded in an XML payload
+- Enqueue procedure accepts an integer, which is encoded in a varchar payload
+
+1. FIFO does not need to be strict (we're not aiming to serialise access to the queue)
+2. We're assuming the external system will not open any additional transactions (which would allow them to e.g. pop a message, read it, then rollback the outer transaction)
+3. Using a varchar payload keeps the system fairly generic and allows for a variety of data to be stored (JSON, XML, etc.)
 
 ## Benchmarking methodology
 Still todo.  Current thoughts are that there will be multiple solution types (e.g. Service Broker, Clustered Table, Hekaton, Ring Buffer) and the best performing from each category would be ranked against each other, and then inside of each category comparisons could be performed against similar solutions.
