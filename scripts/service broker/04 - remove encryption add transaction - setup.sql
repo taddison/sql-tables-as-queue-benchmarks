@@ -1,5 +1,5 @@
 /*
-	03 - Transactional send (being dialog, send, end conversation)
+	04 - No encryption, Transactional send (being dialog, send, end conversation)
 */
 use TAQBenchmarks
 go
