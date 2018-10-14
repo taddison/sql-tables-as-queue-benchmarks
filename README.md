@@ -5,13 +5,13 @@ You'll need an instance of SQL Server to target, and depending on which setup yo
 
 ## Getting Started
 1. Clone the repo
-2. Create the database by running [this script](/scripts/setup/create database.sql)
-3. Pick a setup you'd like to test - the simplest is [this one](/scripts/setup/create stub procs.sql) which is a pair of empty procs
+2. Create the database by running [this script](/scripts/setup/create%20database.sql)
+3. Pick a setup you'd like to test - the simplest is [this one](/scripts/setup/create%20stub%20procs.sql) which is a pair of empty procs
 4. Modify the connectionstring.txt file (located in the benchmarking folder) to provide appropriate server details
-5. Run one of the benchmarks - I reccommend PowerShell ISE and starting with the [simplest benchmark](/benchmarks/run single benchmark with echo.ps1)
+5. Run one of the benchmarks - I reccommend PowerShell ISE and starting with the [simplest benchmark](/benchmarks/run%20single%20benchmark%20with%20echo.ps1)
 
 ## Analysing waits
-A script is included which will capture all waits driven by the SQLDriver application (application name is specified in the connectionstring.txt file), and then display summary data.  Additional instructions are included in the [SQL script](/benchmarks/extended event analysis.sql)
+A script is included which will capture all waits driven by the SQLDriver application (application name is specified in the connectionstring.txt file), and then display summary data.  Additional instructions are included in the [SQL script](/benchmarks/extended%20event%20analysis.sql)
 
 ## Solution requirements
 All solutions implemented must implement the following (and if they don't they should call that out):
