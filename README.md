@@ -54,10 +54,12 @@ $dequeue = "exec dbo.DequeueMessage"
 "id,threads,repeats,duration,completed,failed,median,p90,p95,p99,p999,max" | Out-File results.csv
 for($cycles = 1; $cycles -le 10; $cycles++) {
     $id = "Cycle $cycles enqueue"
-    .\SQLDriver.exe -r 5 -t 5 -c "server=localhost;initial catalog=master;integrated security=sspi" -s $enqueue -m -i $id *>> results.csv
+    .\SQLDriver.exe -r 5 -t 5 -c "server=localhost;initial catalog=TAQBenchmarks;integrated security=sspi" -s $enqueue -m -i $id *>> results.csv
 
     $id = "Cycle $cycles dequeue"
-    .\SQLDriver.exe -r 5 -t 5 -c "server=localhost;initial catalog=master;integrated security=sspi" -s $dequeue -m -i $id *>> results.csv
+    .\SQLDriver.exe -r 5 -t 5 -c "server=localhost;initial catalog=TAQBenchmarks;integrated security=sspi" -s $dequeue -m -i $id *>> results.csv
+    
+    Write-Host "Cycle $cycles complete"
 }
 ```
 
