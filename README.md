@@ -31,6 +31,7 @@ All solutions implemented must implement the following (and if they don't they s
 - Enqueue performance. Starting with an empty queue enqueue with 1...N threads
 - Dequeue performance. Starting with a 'full' queue and dequeue with 1...N threads
 - Ghost hunting 👻. Enqueue N records and then dequeue them. And then repeat multiple times and assess performance (does it degrade on each run?)
+  - Massive kudos to [Forrest][Forrest Blog] for pointing out that ghost records are why queues can/do suck so bad in SQL Server
 
 SQLDriver allows for easy collection of results in these trials - the first example builds a CSV of results for 1...8 threads doing dequeues:
 
@@ -77,3 +78,5 @@ If you don't want to run a random executable you downloaded from the internet (w
 
 ## How to contribute
 Send a PR with a new implementation/open an issue/run some benchmarks on your hardware and share the results!
+
+[Forrest Blog]: https://forrestmcdaniel.com/
