@@ -28,9 +28,49 @@ All solutions implemented must implement the following (and if they don't they s
 3. Using a varchar payload keeps the system fairly generic and allows for a variety of data to be stored (JSON, XML, etc.)
 
 ## Benchmarking methodology
-Still todo.  Current thoughts are that there will be multiple solution types (e.g. Service Broker, Clustered Table, Hekaton, Ring Buffer) and the best performing from each category would be ranked against each other, and then inside of each category comparisons could be performed against similar solutions.
+- Enqueue performance. Starting with an empty queue enqueue with 1...N threads
+- Dequeue performance. Starting with a 'full' queue and dequeue with 1...N threads
+- Ghost hunting 👻. Enqueue N records and then dequeue them. And then repeat multiple times and assess performance (does it degrade on each run?)
 
-Ideally you'll be sending in a pull request with details on how your solution outperforms the current front-runner.  Some process of formally validating those claims on other hardware is needed, as well as sharing any analysis.
+SQLDriver allows for easy collection of results in these trials - the first example builds a CSV of results for 1...8 threads doing dequeues:
+
+```powershell
+"id,threads,repeats,duration,completed,failed,median,p90,p95,p99,p999,max" | Out-File results.csv
+
+for($threads = 1; $threads -le 8; $threads++) {
+    .\SQLDriver.exe -r 5 -t $threads -c "server=localhost;initial catalog=master;integrated security=sspi" -s "exec dbo.DequeueMessage" -m -i "BenchmarkOne" *>> results.csv
+}
+```
+
+> m is minimal mode, i gives the row in the results an id, and *>> redirects the output to a file
+
+If we wanted to capture the ghost hunting example we might use:
+
+```powershell
+$enqueue = "exec dbo.EnqueueMessage @id = 1"
+$dequeue = "exec dbo.DequeueMessage"
+
+"id,threads,repeats,duration,completed,failed,median,p90,p95,p99,p999,max" | Out-File results.csv
+for($cycles = 1; $cycles -le 10; $cycles++) {
+    $id = "Cycle $cycles enqueue"
+    .\SQLDriver.exe -r 5 -t 5 -c "server=localhost;initial catalog=master;integrated security=sspi" -s $enqueue -m -i $id *>> results.csv
+
+    $id = "Cycle $cycles dequeue"
+    .\SQLDriver.exe -r 5 -t 5 -c "server=localhost;initial catalog=master;integrated security=sspi" -s $dequeue -m -i $id *>> results.csv
+}
+```
+
+Which would give a results file similar to:
+
+```csv
+id,threads,repeats,duration,completed,failed,median,p90,p95,p99,p999,max
+Cycle 1 enqueue,5,5,22,25,0,0,2,5,15,15,15
+Cycle 1 dequeue,5,5,20,25,0,0,2,5,15,15,15
+Cycle 2 enqueue,5,5,23,25,0,0,1,5,17,17,17
+Cycle 2 dequeue,5,5,21,25,0,0,1,5,16,16,16
+Cycle 3 enqueue,5,5,22,25,0,0,2,5,16,16,16
+Cycle 3 dequeue,5,5,23,25,0,0,2,6,16,16,16
+```
 
 ## What is SQLDriver
 If you don't want to run a random executable you downloaded from the internet (why wouldn't you?), then you can build it from source: https://github.com/taddison/SQLDriver
