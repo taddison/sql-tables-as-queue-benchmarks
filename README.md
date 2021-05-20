@@ -75,6 +75,8 @@ Cycle 3 enqueue,5,5,22,25,0,0,2,5,16,16,16
 Cycle 3 dequeue,5,5,23,25,0,0,2,6,16,16,16
 ```
 
+> If you want to see the impact of ghost records - specifically version ghost records, open a transaction in another table and execute a select
+
 ## What is SQLDriver
 If you don't want to run a random executable you downloaded from the internet (why wouldn't you?), then you can build it from source: https://github.com/taddison/SQLDriver
 
